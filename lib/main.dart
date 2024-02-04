@@ -14,6 +14,7 @@ class MainApp extends StatelessWidget {
       home: Scaffold(
         body: MainScreenUI(),
       ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

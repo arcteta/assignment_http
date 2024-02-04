@@ -1,3 +1,4 @@
+import 'package:assignment_http/service/api.dart';
 import 'package:flutter/material.dart';
 
 class MainScreenUI extends StatefulWidget {
@@ -41,9 +42,11 @@ class _WidgetBottomNavBarState extends State<WidgetBottomNavBar> {
   ];
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    setState(
+      () {
+        _selectedIndex = index;
+      },
+    );
   }
 
   @override
@@ -80,6 +83,16 @@ class _WidgetBottomNavBarState extends State<WidgetBottomNavBar> {
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
       ),
+    );
+  }
+}
+
+class ListContentUser extends StatelessWidget {
+  const ListContentUser({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
     );
   }
 }
