@@ -1,7 +1,5 @@
 import 'package:assignment_http/controller/provider.dart';
-import 'package:assignment_http/models/user_model.dart';
 import 'package:assignment_http/pages/main_screen.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

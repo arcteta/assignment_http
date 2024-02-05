@@ -1,8 +1,6 @@
-import 'package:assignment_http/controller/provider.dart';
-import 'package:assignment_http/models/user_model.dart';
 import 'package:assignment_http/service/api.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 
 class MainScreenUI extends StatefulWidget {
   const MainScreenUI({super.key});
