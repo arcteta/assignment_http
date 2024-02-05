@@ -39,15 +39,12 @@ class _WidgetBottomNavBarState extends State<WidgetBottomNavBar> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: menu 1',
-      style: optionStyle,
-    ),
+    PostItem(),
     Text(
       'Index 1: menu 2',
       style: optionStyle,
     ),
-    UsersBody(),
+    UsersBodyItem(),
   ];
 
   @override
@@ -90,17 +87,8 @@ class _WidgetBottomNavBarState extends State<WidgetBottomNavBar> {
   }
 }
 
-// class ListContentUser extends StatelessWidget {
-//   const ListContentUser({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return SingleChildScrollView();
-//   }
-// }
-
-class UsersBody extends StatelessWidget {
-  const UsersBody({super.key});
+class UsersBodyItem extends StatelessWidget {
+  const UsersBodyItem({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -141,6 +129,82 @@ class UsersBody extends StatelessWidget {
                                 Text(snapshot.data?[index].website! ?? '_'),
                                 Text(
                                     "${snapshot.data?[index].company!.name ?? '_'}: ${snapshot.data?[index].company!.catchPhrase ?? '_'} (${snapshot.data?[index].company!.bs ?? '_'})"),
+                                Container(
+                                  height: 10,
+                                  color: Colors.white,
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  } else if (snapshot.hasError) {
+                    return const Text("Snapshot Error");
+                  }
+                  // By default, show a loading spinner.
+                  return const CircularProgressIndicator();
+                },
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class PostItem extends StatelessWidget {
+  const PostItem({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 24),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              child: FutureBuilder(
+                future: getPostData(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: snapshot.data?.length ?? 0,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          child: Container(
+                            color: Colors.grey.shade200,
+                            child: Column(
+                              children: [
+                                ListTile(
+                                  title: Text(
+                                    snapshot.data?[index].title! ?? '_',
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black87,
+                                    ),
+                                    maxLines: 2,
+                                  ),
+                                  subtitle: Text(
+                                    snapshot.data?[index].body! ?? '_',
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  leading: Text(
+                                    "${snapshot.data?[index].id! ?? '_'}",
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      //fontWeight: FontWeight.bold,
+                                      color: Colors.black87,
+                                    ),
+                                  ),
+                                ),
                                 Container(
                                   height: 10,
                                   color: Colors.white,
