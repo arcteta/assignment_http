@@ -9,10 +9,10 @@ Future<List<UserModel>> getUserData() async {
       Uri.parse('https://jsonplaceholder.typicode.com/users/'),
     );
     final list = json.decode(response.body) as List<dynamic>;
-    print("this is list => $list");
     return list.map((index) => UserModel.fromJson(index)).toList();
   } catch (error) {
-    throw Exception('Failed to load album');
+    throw Exception('Failed to load data');
   }
 }
+
 
